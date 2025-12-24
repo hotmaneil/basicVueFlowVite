@@ -1,0 +1,13 @@
+/* import the required styles */
+@import '@vue-flow/core/dist/style.css';
+
+/* import the default theme (optional) */
+@import '@vue-flow/core/dist/theme-default.css';
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  /* background-color:#336666 */
+}
