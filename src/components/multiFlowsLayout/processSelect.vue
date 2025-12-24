@@ -16,10 +16,10 @@
 
     <el-row>
       <el-col :span="12">
-        <el-button type="primary" plain>設定</el-button>
+        <el-button type="primary" plain>參數設定</el-button>
       </el-col>
       <el-col :span="12">
-        <el-button type="info" plain @click="onClick">子途程</el-button>
+        <el-button type="info" plain @click="onClick">子途程列表</el-button>
       </el-col>
     </el-row>
 

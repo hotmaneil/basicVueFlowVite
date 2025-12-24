@@ -27,13 +27,19 @@
       <template #node-Out="Props">
         <processOutSelect v-bind="Props" :options="options"></processOutSelect>
       </template>
+
+      <Panel class="process-panel" position="top-left">
+        <div class="layout-panel">
+          <button title="set vertical layout" @click="layoutGraph('TB')">排版</button>
+        </div>
+      </Panel>
     </VueFlow>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { VueFlow, useVueFlow } from '@vue-flow/core';
+import { ref, nextTick } from 'vue';
+import { VueFlow, useVueFlow, Panel } from '@vue-flow/core';
 import selectSidebar from './selectSidebar.vue';
 import dropzoneBackground from './dropzoneBackground.vue';
 import useDragAndDrop from './useDragAndDrop';
@@ -42,13 +48,15 @@ import processInSelect from './processInSelect.vue';
 import processSelect from './processSelect.vue';
 import processOutSelect from './processOutSelect.vue';
 
+import { useLayout } from '../../utils/useLayout';
+
 const { onDrop, isDragOver, onDragOver, onDragLeave } = useDragAndDrop();
 
 const nodes = ref([]);
 
 const edges = ref([]);
 
-const { onConnect, addEdges } = useVueFlow();
+const { onConnect, addEdges, fitView } = useVueFlow();
 
 onConnect(({ source, target, sourceHandle, targetHandle }) => {
   console.log('source', source);
@@ -65,7 +73,7 @@ onConnect(({ source, target, sourceHandle, targetHandle }) => {
       target: target,
       sourceHandle: sourceHandle,
       targetHandle: targetHandle,
-      type: 'step', // 指定自訂類型
+      type: 'straight', // 指定自訂類型
     },
   ]);
 
@@ -73,7 +81,7 @@ onConnect(({ source, target, sourceHandle, targetHandle }) => {
     id: timeStr,
     source: source,
     target: target,
-    type: 'step',
+    type: 'straight',
   });
 });
 
@@ -111,4 +119,14 @@ const options = [
 ];
 
 const emit = defineEmits(['update:isOpenDrawer']);
+
+const { layout } = useLayout();
+
+async function layoutGraph(direction) {
+  nodes.value = layout(nodes.value, edges.value, direction);
+
+  nextTick(() => {
+    fitView();
+  });
+}
 </script>
