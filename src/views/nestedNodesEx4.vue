@@ -306,7 +306,6 @@ const toggleGroup = (groupId) => {
   });
 };
 
-// TODO:試著先了解如下https://vueflow.dev/examples/math.html 再改用
 </script>
 
 <style>

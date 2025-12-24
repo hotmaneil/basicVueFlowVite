@@ -28,7 +28,7 @@ import { VueFlow, useVueFlow, MarkerType } from '@vue-flow/core'
 import CustomEdgeArrow from '../components/CustomEdgeArrow.vue'
 import selectSidebar from '../components/selectSidebar.vue'
 import DropzoneBackground from '../components/DropzoneBackground.vue'
-import useDragAndDrop from '../js/useDragAndDrop'
+import useDragAndDrop from '../components/multiFlowsLayout/useDragAndDrop'
 
 const { onDragOver, onDrop, onDragLeave, isDragOver } = useDragAndDrop()
 

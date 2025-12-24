@@ -1,4 +1,3 @@
-// TODO:試著先了解如下https://vueflow.dev/examples/math.html 再改用
 <template>
   <VueFlow class="math-flow" :nodes="nodes" :edges="edges" fit-view-on-init>
     <template #node-value="props">
