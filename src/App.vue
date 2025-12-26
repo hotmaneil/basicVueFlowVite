@@ -20,6 +20,7 @@
 // import multiFlows from './views/multiFlows.vue';
 import multiFlowsLayout from './views/multiFlowsLayout.vue';
 // import dragDrop from './views/dragDrop.vue';
+// import nodeToolbar from './views/nodeToolbar.vue';
 </script>
 
 <template>
@@ -43,6 +44,7 @@ import multiFlowsLayout from './views/multiFlowsLayout.vue';
   <!-- <multiFlows /> -->
   <multiFlowsLayout />
   <!-- <dragDrop /> -->
+  <!-- <nodeToolbar /> -->
 </template>
 
 <style></style>

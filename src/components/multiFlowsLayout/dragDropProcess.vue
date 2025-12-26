@@ -20,8 +20,13 @@
         <processSelect
           v-bind="Props"
           :options="options"
-          @update:isOpenDrawer="(val) => emit('update:isOpenDrawer', val)"
+          @update:isOpenList="(val) => updateIsOpenList(val, Props)"
         ></processSelect>
+        <toolbarList
+          :id="Props.id"
+          :data="Props.data"
+          @update:isOpenDrawer="(val) => emit('update:isOpenDrawer', val)"
+        />
       </template>
 
       <template #node-Out="Props">
@@ -39,7 +44,7 @@
 
 <script setup>
 import { ref, nextTick } from 'vue';
-import { VueFlow, useVueFlow, Panel } from '@vue-flow/core';
+import { VueFlow, useVueFlow, Panel, Position } from '@vue-flow/core';
 import selectSidebar from './selectSidebar.vue';
 import dropzoneBackground from './dropzoneBackground.vue';
 import useDragAndDrop from './useDragAndDrop';
@@ -49,6 +54,8 @@ import processSelect from './processSelect.vue';
 import processOutSelect from './processOutSelect.vue';
 
 import { useLayout } from '../../utils/useLayout';
+
+import toolbarList from './toolbarList.vue';
 
 const { onDrop, isDragOver, onDragOver, onDragLeave } = useDragAndDrop();
 
@@ -128,5 +135,11 @@ async function layoutGraph(direction) {
   nextTick(() => {
     fitView();
   });
+}
+
+/** 接收到並更新是否開啟子途程列表 */
+function updateIsOpenList(source, Props) {
+  Props.data.toolbarVisible = source;
+  Props.data.toolbarPosition = Position.Right;
 }
 </script>

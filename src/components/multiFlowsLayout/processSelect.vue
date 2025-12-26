@@ -42,10 +42,17 @@ const value = computed({
   set: (value) => updateNodeData(props.id, { value }),
 });
 
-const emit = defineEmits(['update:isOpenDrawer']);
+const emit = defineEmits(['update:isOpenList']);
 
+const isOpenList = ref(false);
 function onClick() {
-  emit('update:isOpenDrawer', true);
+  if (isOpenList.value === false) {
+    isOpenList.value = true;
+    emit('update:isOpenList', true);
+  } else {
+    isOpenList.value = false;
+    emit('update:isOpenList', false);
+  }
 }
 </script>
 
